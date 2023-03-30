@@ -27,10 +27,10 @@ class ProcessTheClient(multiprocessing.Process):
                     d = data.decode()
                     rcv=rcv+d
                     if rcv[-2:]=='\r\n':
-                        logging.warning("data dari client: {}" . format(rcv))
+                    
                         hasil = httpserver.proses(rcv)
                         hasil=hasil+"\r\n\r\n".encode()
-                        logging.warning("balas ke  client: {}" . format(hasil))
+
                         self.connection.sendall(hasil)
                         rcv=""
                         self.connection.close()

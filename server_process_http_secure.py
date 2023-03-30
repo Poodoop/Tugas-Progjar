@@ -60,7 +60,7 @@ class Server(multiprocessing.Process):
             self.connection, self.client_address = self.my_socket.accept()
             try:
                 self.secure_connection = self.context.wrap_socket(self.connection, server_side=True)
-                logging.warning("connection from {}".format(self.client_address))
+
                 clt = ProcessTheClient(self.secure_connection, self.client_address)
                 clt.start()
                 self.the_clients.append(clt)

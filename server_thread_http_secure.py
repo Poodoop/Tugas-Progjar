@@ -48,13 +48,11 @@ class ProcessTheClient(threading.Thread):
 class Server(threading.Thread):
 	def __init__(self,hostname='testing.net'):
 		self.the_clients = []
-#------------------------------
 		self.hostname = hostname
 		cert_location = os.getcwd() + '/certs/'
 		self.context = ssl.SSLContext(ssl.PROTOCOL_TLS_SERVER)
 		self.context.load_cert_chain(certfile=cert_location + 'domain.crt',
 									 keyfile=cert_location + 'domain.key')
-#---------------------------------
 		self.my_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 		self.my_socket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
 		threading.Thread.__init__(self)
